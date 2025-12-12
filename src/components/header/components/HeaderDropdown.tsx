@@ -37,7 +37,7 @@ export default function HeaderDropdown() {
   return (
     <div
       className="flex flex-col gap-5 bg-[#313249] absolute top-[75%] px-3 pt-[20px] pb-[40px]
-        w-[25%] rounded-2xl "
+        w-[75%] md:w-[50%]  rounded-2xl "
     >
       <div className="flex gap-2 py-2 px-4 text-[14px] border-amber-200 border-[1px] rounded-lg items-center justify-center  hover:bg-[#fbc35c]">
         <FaShoppingCart size={20} />

@@ -12,6 +12,7 @@ export default function MoviesSection({
   category: string;
 }) {
   const [newmovies, setNewMovies] = useState<Movie[]>([]);
+  // console.log("🚀 ~ MoviesSection ~ newmovies:", newmovies);
   const [typemovies, setTypeMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
@@ -20,9 +21,9 @@ export default function MoviesSection({
   }, [category]);
 
   return (
-    <>
+    <div>
       <MoviesList title={`Mới: ${title}`} movies={newmovies} />
       <MoviesList title={`Loại: ${title}`} movies={typemovies} />
-    </>
+    </div>
   );
 }

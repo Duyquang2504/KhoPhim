@@ -6,21 +6,21 @@ import { PiFilmSlateFill } from "react-icons/pi";
 import { useEffect, useState, useRef } from "react";
 import { Movie } from "../utils/movie";
 import { getNewMovies } from "../service/moviesApi";
+import { useGetNewMoviesQuery } from "../service/movie.service";
 
-export default function BannerHome({ category }: { category: string }) {
+export default function BannerHome() {
+  const { data } = useGetNewMoviesQuery();
+
   const [randomMovies, setRandomMovies] = useState<Movie[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const intervalRef = useRef<any>(null);
 
   // ✅ Gọi API khi BannerHome mount hoặc khi category thay đổi
   useEffect(() => {
-    const fetchMovie = async () => {
-      const data = await getNewMovies(category);
-      setRandomMovies(data.slice(0, 4));
-      setCurrentIndex(0);
-    };
-    fetchMovie();
-  }, [category]);
+    if (!data?.items) return;
+    setRandomMovies(data?.items.slice(0, 4));
+    setCurrentIndex(0);
+  }, [data?.items]);
 
   // ✅ Auto chuyển slide mỗi 3.5 giây
   useEffect(() => {

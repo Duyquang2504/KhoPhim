@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Movie } from "../utils/movie";
+import { Movie } from "../types/entities/movienew";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Link from "next/link";
@@ -24,7 +24,7 @@ const responsive = {
   },
   mobile: {
     breakpoint: { max: 640, min: 0 },
-    items: 3,
+    items: 2,
     slidesToSlide: 1,
   },
 };
@@ -42,7 +42,7 @@ export default function MoviesList({ title, movies }: MoviesListProps) {
       autoPlay={false}
       keyBoardControl
       containerClass="carousel-container"
-      itemClass="px-3" // tạo khoảng cách đều giữa phim
+      itemClass="px-2" // tạo khoảng cách đều giữa phim
       arrows
       renderButtonGroupOutside={true}
       showDots={false}
@@ -51,14 +51,14 @@ export default function MoviesList({ title, movies }: MoviesListProps) {
       {movies?.map((movie) => (
         <div className=" flex flex-col " key={movie._id}>
           <Link href={`/DetailMovie/${movie.slug}`}>
-            <div className="w-full aspect-3/3">
+            <div className="w-full aspect-5/3 xl:aspect-5/3">
               <img
                 src={
                   movie.thumb_url.startsWith("https://phimimg.com/")
                     ? movie.thumb_url
                     : `https://phimimg.com/${movie.thumb_url}`
                 }
-                className="w-full h-full object-cover rounded-3xl"
+                className="w-full h-full object-cover rounded-xl"
                 alt={movie.name}
               />
             </div>

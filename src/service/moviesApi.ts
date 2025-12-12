@@ -1,5 +1,5 @@
 import { MovieData } from "../types/entities/Movie";
-import { Movie } from "../utils/movie";
+import { Movie } from "../types/entities/movienew";
 //new film
 const API_NEWFILMS = "https://phimapi.com/danh-sach/";
 // type film
@@ -10,7 +10,6 @@ const DETAIL_FILM = "https://phimapi.com/phim";
 export async function getNewMovies(category: string): Promise<Movie[]> {
   const res = await fetch(`${API_NEWFILMS}/${category}`);
   const data = await res.json();
-  console.log("🚀 ~ getNewMovies ~ data:", data);
   return data.items || [];
 }
 
@@ -23,6 +22,5 @@ export async function getMoviesByCategory(category: string): Promise<Movie[]> {
 export async function getDetailFilm(slug: string): Promise<MovieData> {
   const res = await fetch(`${DETAIL_FILM}/${slug}`);
   const data = await res.json();
-  console.log("🚀 ~ getDetailFilm ~ data:", data);
   return data.movie || {};
 }
