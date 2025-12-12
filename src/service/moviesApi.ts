@@ -1,4 +1,4 @@
-import { MovieData } from "../pages/DetailFilm/entities/Movie";
+import { MovieData } from "../types/entities/Movie";
 import { Movie } from "../utils/movie";
 //new film
 const API_NEWFILMS = "https://phimapi.com/danh-sach/";

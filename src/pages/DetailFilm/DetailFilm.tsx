@@ -2,9 +2,9 @@
 
 import { getDetailFilm } from "@/src/service/moviesApi";
 import { useEffect, useState } from "react";
-import { MovieData } from "./entities/Movie";
-import Contentfilm from "./components/Contentfilm";
-import PlayListFilm from "./components/PlayListFilm/PlayListFilm";
+import { MovieData } from "../../types/entities/Movie";
+import Contentfilm from "../../feature/DetailFilm/components/Contentfilm";
+import PlayListFilm from "../../feature/DetailFilm/components/PlayListFilm/PlayListFilm";
 import BannerHome from "@/src/components/BannerHome";
 // import Actor from "./components/Actor";
 import { ImCrying } from "react-icons/im";

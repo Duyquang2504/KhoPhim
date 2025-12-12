@@ -1,5 +1,5 @@
 import { FaImdb, FaStar } from "react-icons/fa";
-import { MovieData } from "../entities/Movie";
+import { MovieData } from "../../../types/entities/Movie";
 // import Actor from "./Actor";
 
 interface ContentfilmProps {

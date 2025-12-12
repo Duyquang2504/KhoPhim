@@ -51,7 +51,7 @@ export default function MoviesList({ title, movies }: MoviesListProps) {
       {movies?.map((movie) => (
         <div className=" flex flex-col " key={movie._id}>
           <Link href={`/DetailMovie/${movie.slug}`}>
-            <div className="w-full aspect-2/3">
+            <div className="w-full aspect-3/3">
               <img
                 src={
                   movie.thumb_url.startsWith("https://phimimg.com/")
