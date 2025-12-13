@@ -12,7 +12,6 @@ export default function MoviesSection({
   category: string;
 }) {
   const [newmovies, setNewMovies] = useState<Movie[]>([]);
-  // console.log("🚀 ~ MoviesSection ~ newmovies:", newmovies);
   const [typemovies, setTypeMovies] = useState<Movie[]>([]);
 
   useEffect(() => {

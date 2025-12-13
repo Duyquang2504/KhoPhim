@@ -29,7 +29,7 @@ export default function DetailFilm({ slug }: CardMoviesProps) {
   console.log(!detailFilm?.thumb_url);
 
   if (loading) {
-    return <LoadingPage onFinish={() => setLoading(true)} />;
+    return <LoadingPage />;
   }
 
   if (!detailFilm || !detailFilm.thumb_url) {
@@ -44,7 +44,7 @@ export default function DetailFilm({ slug }: CardMoviesProps) {
   }
 
   return (
-    <div className="flex flex-col h-[1000px]">
+    <div className="flex flex-col">
       <div
         className="absolute inset-0 w-full h-[100%] bg-top bg-cover bg-no-repeat md:w-full md:h-full"
         style={{ backgroundImage: `url(${detailFilm.thumb_url})` }}

@@ -13,7 +13,6 @@ const sections = [
     category: "phim-moi-cap-nhat",
     bg_color: "bg-[linear-gradient(235deg,#FFFFFF_30%,#674196_130%)]",
   },
-  // { title: "Phim Chiếu Rạp", category: "phim-chieu-rap" },
   {
     title: "Phim Hoạt Hình",
     category: "hoat-hinh",

@@ -11,10 +11,9 @@ import ActorsFilm from "./components/ActorsFilm";
 export default function PlayListFilm() {
   const tabs = ["Tập phim", "Gallery", "Diễn viên"];
   const [type, setType] = useState("Tập phim");
-  console.log("🚀 ~ PlayListFilm ~ type:", type);
 
   return (
-    <div className="flex flex-col gap-8 w-[70%] rounded-tr-3xl px-8 rounded-tl-[50px]  bg-gradient-to-b from-[#191b24f5] via-[#191b24] to-[#191b24]">
+    <div className="flex flex-col gap-8 w-[70%] rounded-tr-3xl px-8 rounded-tl-[50px]  bg-linear-to-b from-[#191b24f5] via-[#191b24] to-[#191b24]">
       <div className="flex items-center justify-center pt-10 pb-5 gap-10">
         <div className="flex items-center gap-3 bg-linear-to-r from-[#ffd773] to-[#ffecbb] p-4 px-8 rounded-3xl text-[16px] font-bold shadow-[0_0_6px_#ffd773ad] cursor-pointer transition-all duration-200 ease-out hover:shadow-[0_0_15px_#ffd773]">
           <FaPlay />

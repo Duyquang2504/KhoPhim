@@ -1,35 +1,24 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-export default function LoadingPage({ onFinish }: { onFinish: () => void }) {
-  const [fadeOut, setFadeOut] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setFadeOut(true), 1500);
-    const finishTimer = setTimeout(onFinish, 3000);
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(finishTimer);
-    };
-  }, [onFinish]);
-
+export default function LoadingPage() {
   return (
-    <div
-      className={`inset-0 absolute bg-[#232736] z-20 ${
-        fadeOut ? "fade-out-bg" : "fade-in-bg"
-      }`}
-    >
-      <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex items-center gap-2 scale-in">
+    <div className="inset-0 absolute bg-[#232736] z-20 h-full">
+      <div className="flex items-center justify-center h-full gap-2 blink">
         <Image
           src="/film-reel-bridge-svgrepo-com.svg"
           alt="logo"
-          width={80}
-          height={80}
-          className="scale-in"
+          width={60}
+          height={60}
+          className="xl:w-[100px] xl:h-[100px]"
         />
-        <div className="scale-in">
-          <h1 className="text-[40px]  text-white font-bold">KHOPHIM</h1>
-          <p className="text-gray-400 text-[25px]">Xả Stress - Chất Lượng</p>
+        <div>
+          <h1 className="text-[20px] xl:text-[40px] text-white font-bold">
+            KHOPHIM
+          </h1>
+          <p className="text-gray-400 text-[8px] xl:text-[25px]">
+            Xả Stress - Chất Lượng
+          </p>
         </div>
       </div>
     </div>

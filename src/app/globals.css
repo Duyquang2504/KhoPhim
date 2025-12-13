@@ -62,12 +62,24 @@ font-family: "Lato", sans-serif;
   }
 }
 
-/* Class cho fade-in khi hiển thị */
-.fade-in-bg {
-  animation: fadeInBg 0.5s ease-out forwards;
+
+/* --------------- */
+
+@keyframes blink {
+
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+
+  25%,
+  75% {
+    opacity: 0;
+  }
 }
 
-/* Class cho fade-out khi tắt (nếu muốn dùng JS hoặc state để trigger) */
-.fade-out-bg {
-  animation: fadeOutBg 0.5s ease-out forwards;
+.blink {
+  animation: blink 3s infinite;
 }
+
