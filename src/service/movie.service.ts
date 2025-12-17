@@ -9,6 +9,16 @@ export const moviesApi = createApi({
   endpoints: (build) => ({
     getNewMovies: build.query<ResponeMovie, void>({
       query: () => `/danh-sach/phim-moi-cap-nhat`,
+      transformResponse: (response: ResponeMovie) => {
+        const uniqueItems = Array.from(
+          new Map(response.items.map((item) => [item.tmdb?.id, item])).values()
+        );
+
+        return {
+          ...response,
+          items: uniqueItems,
+        };
+      },
     }),
   }),
 });
