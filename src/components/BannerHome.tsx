@@ -18,7 +18,7 @@ export default function BannerHome() {
   // ✅ Gọi API khi BannerHome mount hoặc khi category thay đổi
   useEffect(() => {
     if (!data?.items) return;
-    setRandomMovies(data?.items.slice(0, 4));
+    setRandomMovies(data?.items.slice(0, 6));
     setCurrentIndex(0);
   }, [data?.items]);
 
@@ -102,7 +102,7 @@ export default function BannerHome() {
               key={movie._id}
               src={movie.thumb_url}
               onClick={() => handleThumbnailClick(index)}
-              className={` w-[35px] h-[35px] lg:w-20 lg:h-[45px] object-cover rounded-full lg:rounded-md cursor-pointer border-2 transition-all duration-300
+              className={` w-[35px] h-[35px] lg:w-18 lg:h-10 object-cover rounded-full lg:rounded-md cursor-pointer border-2 transition-all duration-300
                 ${
                   index === currentIndex
                     ? "border-[#fdb838] scale-110 shadow-[0_0_15px_2px_#fdb838]"

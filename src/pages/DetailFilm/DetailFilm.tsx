@@ -44,13 +44,20 @@ export default function DetailFilm({ slug }: CardMoviesProps) {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className=" relative min-h-screen overflow-hidden flex flex-col">
       <div
-        className="absolute inset-0 w-full h-[100%] bg-top bg-cover bg-no-repeat md:w-full md:h-full"
+        className="absolute inset-0 w-full h-[50%] lg:h-full bg-top bg-cover bg-no-repeat "
         style={{ backgroundImage: `url(${detailFilm.thumb_url})` }}
       />
       <div className="absolute inset-0 bg-[radial-gradient(circle,#00000040_20%,#0e0f1a_100%)]" />
-      <div className="absolute flex w-full translate-y-[450px] px-5 overflow-hidden">
+
+      <div
+        className=" absolute flex flex-col lg:flex-row pt-[30%] lg:pt-0 w-full  h-full lg:translate-y-[450px] px-0 lg:px-5 overflow-hidden  bg-linear-to-b
+    from-[#191b2405]
+    via-[#191b24]
+    to-[#191b24]
+    "
+      >
         <Contentfilm detailFilm={detailFilm} />
         <PlayListFilm />
       </div>

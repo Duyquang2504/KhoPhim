@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import Header from "@/src/components/header/Header";
 import MoviesSection from "@/src/components/MoviesSection";
 import BannerHome from "@/src/components/BannerHome";
-
 const sections = [
   {
     title: "Phim Mới Cập Nhật",
