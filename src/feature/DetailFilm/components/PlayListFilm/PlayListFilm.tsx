@@ -7,32 +7,30 @@ import { RiAddLargeFill } from "react-icons/ri";
 import EpisodesFilm from "./components/EpisodesFilm";
 import GalleryFilm from "./components/GalleryFilm";
 import ActorsFilm from "./components/ActorsFilm";
-
-export default function PlayListFilm() {
+import { MovieData } from "@/src/types/entities/Movie";
+interface ContentfilmProps {
+  detailFilm: MovieData;
+}
+export default function PlayListFilm({ detailFilm }: ContentfilmProps) {
   const tabs = ["Tập phim", "Gallery", "Diễn viên"];
   const [type, setType] = useState("Tập phim");
-  const [openInfoOnMobile, setOpenInfoOnMobile] = useState(false);
-  const handelOpenInfo = () => {
-    setOpenInfoOnMobile((prev) => !prev);
-  };
+
   return (
     <div
-      className="flex flex-col gap-8 w-full lg:w-[70%] lg:rounded-tr-3xl px-8 lg:rounded-tl-[50px] 
- 
+      className="flex flex-col gap-8 w-full  lg:w-[70%] lg:rounded-tr-3xl px-5 lg:px-8 lg:rounded-tl-[50px] 
+
     lg:bg-linear-to-t
     lg:from-[#191b24]
     lg:via-[#191b24]
     lg:to-[#191b248e]"
     >
-      <div className="flex items-center lg:justify-center  pt-10 pb-5 gap-10">
-        <div
-          onClick={handelOpenInfo}
-          className="flex items-center gap-3 bg-linear-to-r from-[#ffd773] to-[#ffecbb] p-4 px-8 rounded-3xl text-[16px] font-bold shadow-[0_0_6px_#ffd773ad] cursor-pointer transition-all duration-200 ease-out hover:shadow-[0_0_15px_#ffd773]"
-        >
-          <FaPlay />
-          <p>Xem ngay</p>
+      <div className="flex flex-col lg:flex-row items-center lg:justify-center  pt-5 lg:pt-10 pb-5 gap-10 ">
+        <div className="flex  lg:flex-row  items-center gap-3 bg-linear-to-r from-[#ffd773] to-[#ffecbb] p-3 px-20 lg:p-4 lg:px-8 rounded-3xl text-[16px] font-bold shadow-[0_0_6px_#ffd773ad] cursor-pointer transition-all duration-200 ease-out hover:shadow-[0_0_15px_#ffd773]">
+          <FaPlay size={10} />
+          <p className="">Xem ngay</p>
         </div>
-        <div className="flex items-center gap-10 text-[12px] font-bold">
+
+        <div className="flex items-center gap-5 text-[12px] font-bold">
           <div className=" flex flex-col justify-center items-center text-[#ffff] gap-2 p-3  cursor-pointer  group hover:bg-[#1e1f28] rounded-2xl">
             <FaHeart
               size={20}
@@ -73,7 +71,7 @@ export default function PlayListFilm() {
       </div>
       <div className="py-3  ">
         {type === "Tập phim" && <EpisodesFilm />}
-        {type === "Gallery" && <GalleryFilm />}
+        {type === "Gallery" && <GalleryFilm detailFilm={detailFilm} />}
         {type === "Diễn viên" && <ActorsFilm />}
       </div>
     </div>

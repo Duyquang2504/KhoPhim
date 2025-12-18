@@ -33,7 +33,7 @@ export default function Contentfilm({ detailFilm }: ContentfilmProps) {
     flex flex-col gap-3 text-[12px] px-5 lg:px-0
     lg:rounded-tl-3xl lg:rounded-tr-[50px]
     lg:p-5 lg:w-[30%]
-    
+    ]
         lg:bg-linear-to-t
     lg:from-[#191b24]
     lg:via-[#191b24]
@@ -64,7 +64,7 @@ export default function Contentfilm({ detailFilm }: ContentfilmProps) {
       <div
         className={`flex flex-col gap-4 p-5 lg:px-0 rounded-2xl bg-[#00000033] lg:bg-[#0000000] lg:rounde-none ${
           openInfoOnMobile ? "block" : "hidden"
-        } lg:bl`}
+        } lg:block`}
       >
         <div className="flex flex-wrap gap-2  text-white   ">
           <div className="flex gap-2 items-center rounded-lg  p-2 bg-[#05060c] border border-amber-300">

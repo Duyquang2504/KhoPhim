@@ -44,7 +44,7 @@ export default function DetailFilm({ slug }: CardMoviesProps) {
   }
 
   return (
-    <div className=" relative min-h-screen overflow-hidden flex flex-col">
+    <div className=" flex flex-col ">
       <div
         className="absolute inset-0 w-full h-[50%] lg:h-full bg-top bg-cover bg-no-repeat "
         style={{ backgroundImage: `url(${detailFilm.thumb_url})` }}
@@ -52,14 +52,16 @@ export default function DetailFilm({ slug }: CardMoviesProps) {
       <div className="absolute inset-0 bg-[radial-gradient(circle,#00000040_20%,#0e0f1a_100%)]" />
 
       <div
-        className=" absolute flex flex-col lg:flex-row pt-[30%] lg:pt-0 w-full  h-full lg:translate-y-[450px] px-0 lg:px-5 overflow-hidden  bg-linear-to-b
-    from-[#191b2405]
+        className="absolute flex flex-col lg:flex-row  w-full h-full  lg:h-full translate-y-[250px]  lg:translate-y-[450px] lg:px-5 
+        bg-linear-to-t
+   from-[#191b24]
     via-[#191b24]
-    to-[#191b24]
+    to-[#191b248e 
+    
     "
       >
         <Contentfilm detailFilm={detailFilm} />
-        <PlayListFilm />
+        <PlayListFilm detailFilm={detailFilm} />
       </div>
     </div>
   );
