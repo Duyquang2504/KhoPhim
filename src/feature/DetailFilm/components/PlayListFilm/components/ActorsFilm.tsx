@@ -1,3 +1,4 @@
+"use client";
 import { useAppSelector } from "@/src/redux/store";
 import Image from "next/image";
 

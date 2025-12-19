@@ -1,5 +1,4 @@
 import DetailFilm from "@/src/pages/DetailFilm/DetailFilm";
-import { getDetailFilm } from "@/src/service/moviesApi";
 
 interface Params {
   params: Promise<{
