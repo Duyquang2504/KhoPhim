@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Movie, ResponeMovie } from "../types/entities/movienew";
+import { MovieData, ResponseDetailMovie } from "../types/entities/Movie";
 
 export const moviesApi = createApi({
   reducerPath: "moviesApi",
@@ -20,7 +21,12 @@ export const moviesApi = createApi({
         };
       },
     }),
+
+    getDetailMovie: build.query<ResponseDetailMovie, string>({
+      query: (slug) => `/phim/${slug}`,
+    }),
   }),
 });
 
 export const { useGetNewMoviesQuery } = moviesApi;
+export const { useGetDetailMovieQuery } = moviesApi;

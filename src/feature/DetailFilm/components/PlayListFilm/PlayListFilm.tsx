@@ -69,7 +69,7 @@ export default function PlayListFilm({ detailFilm }: ContentfilmProps) {
           </div>
         ))}
       </div>
-      <div className="py-3  ">
+      <div className="py-3 h-full ">
         {type === "Tập phim" && <EpisodesFilm />}
         {type === "Gallery" && <GalleryFilm detailFilm={detailFilm} />}
         {type === "Diễn viên" && <ActorsFilm />}

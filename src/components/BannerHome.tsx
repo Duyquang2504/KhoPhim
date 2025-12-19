@@ -6,7 +6,7 @@ import { PiFilmSlateFill } from "react-icons/pi";
 import { useEffect, useState, useRef } from "react";
 import { Movie } from "../utils/movie";
 import { getNewMovies } from "../service/moviesApi";
-import { useGetNewMoviesQuery } from "../service/movie.service";
+import { useGetNewMoviesQuery } from "../service/kkphim.service";
 
 export default function BannerHome() {
   const { data } = useGetNewMoviesQuery();

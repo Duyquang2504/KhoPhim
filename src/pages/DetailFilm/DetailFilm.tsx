@@ -1,7 +1,7 @@
 "use client";
 
 import { getDetailFilm } from "@/src/service/moviesApi";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MovieData } from "../../types/entities/Movie";
 import Contentfilm from "../../feature/DetailFilm/components/Contentfilm";
 import PlayListFilm from "../../feature/DetailFilm/components/PlayListFilm/PlayListFilm";
@@ -9,30 +9,39 @@ import BannerHome from "@/src/components/BannerHome";
 // import Actor from "./components/Actor";
 import { ImCrying } from "react-icons/im";
 import LoadingPage from "@/src/components/LoadingPage";
+import { useGetDetailMovieQuery } from "@/src/service/kkphim.service";
+import { useGetMovieCredistQuery } from "@/src/service/tmdb.service";
+
+import { setCredits } from "@/src/redux/features/DetailFilmSlice";
+import { useAppDispatch } from "@/src/redux/store";
 
 interface CardMoviesProps {
   slug: string;
 }
 
 export default function DetailFilm({ slug }: CardMoviesProps) {
-  const [detailFilm, setDetailFilm] = useState<MovieData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { data, isLoading } = useGetDetailMovieQuery(slug);
+
+  const detailFilm = useMemo(() => {
+    return data?.movie ?? null;
+  }, [data]);
+
+  const { data: datatmdb } = useGetMovieCredistQuery(
+    Number(detailFilm?.tmdb.id)
+  );
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getDetailFilm(slug).then((data) => {
-      setTimeout(() => {
-        setDetailFilm(data);
-        setLoading(false);
-      }, 1500);
-    });
-  }, [slug]);
-  console.log(!detailFilm?.thumb_url);
+    if (datatmdb) {
+      dispatch(setCredits(datatmdb));
+    }
+  }, [datatmdb, dispatch]);
 
-  if (loading) {
+  if (isLoading) {
     return <LoadingPage />;
   }
 
-  if (!detailFilm || !detailFilm.thumb_url) {
+  if (!detailFilm) {
     return (
       <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] ">
         <div className="flex text-gray-500 text-[25px] gap-2">
@@ -47,7 +56,7 @@ export default function DetailFilm({ slug }: CardMoviesProps) {
     <div className=" flex flex-col ">
       <div
         className="absolute inset-0 w-full h-[50%] lg:h-full bg-top bg-cover bg-no-repeat "
-        style={{ backgroundImage: `url(${detailFilm.thumb_url})` }}
+        style={{ backgroundImage: `url(${detailFilm?.thumb_url})` }}
       />
       <div className="absolute inset-0 bg-[radial-gradient(circle,#00000040_20%,#0e0f1a_100%)]" />
 
