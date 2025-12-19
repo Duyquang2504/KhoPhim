@@ -1,4 +1,4 @@
-"use-client";
+"use client";
 import { useState } from "react";
 import { FaHeart, FaPlay } from "react-icons/fa";
 import { IoIosSend, IoMdAdd } from "react-icons/io";

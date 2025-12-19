@@ -1,3 +1,4 @@
+"use client";
 import { FaAngleDown, FaImdb, FaStar } from "react-icons/fa";
 import { MovieData } from "../../../types/entities/Movie";
 import { useState } from "react";

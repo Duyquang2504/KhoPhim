@@ -1,10 +1,12 @@
-import DetailFilm from "@/src/pages/DetailFilm/DetailFilm";
+import DetailFilm from "../DetailFilm";
 
 interface Params {
   params: Promise<{
     slug: string;
   }>;
 }
+
+export const dynamic = 'force-dynamic';
 
 export default async function DetailMoviePage({ params }: Params) {
   const { slug } = await params;
