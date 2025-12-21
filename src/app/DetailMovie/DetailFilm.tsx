@@ -25,9 +25,16 @@ export default function DetailFilm({ slug }: CardMoviesProps) {
   const detailFilm = useMemo(() => {
     return data?.movie ?? null;
   }, [data]);
+  const epiposidesFilm = useMemo(() => {
+    return data?.episodes ?? [];
+  }, [data?.episodes]);
+  console.log("🚀 ~ DetailFilm ~ epiposidesFilm:", epiposidesFilm);
 
+  const movieId = detailFilm?.tmdb?.id;
+  const type = detailFilm?.tmdb?.type;
   const { data: datatmdb } = useGetMovieCredistQuery(
-    Number(detailFilm?.tmdb.id)
+    { movieId: Number(movieId!), type: type! },
+    { skip: !movieId || !type }
   );
   const dispatch = useAppDispatch();
 
@@ -70,7 +77,7 @@ export default function DetailFilm({ slug }: CardMoviesProps) {
     "
       >
         <Contentfilm detailFilm={detailFilm} />
-        <PlayListFilm detailFilm={detailFilm} />
+        <PlayListFilm detailFilm={detailFilm} epiposidesFilm={epiposidesFilm} />
       </div>
     </div>
   );

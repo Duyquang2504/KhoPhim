@@ -13,9 +13,9 @@ export const castsApi = createApi({
     },
   }),
   endpoints: (build) => ({
-    getMovieCredist: build.query<Credits, number>({
-      query: (movieId) =>
-        `/3/movie/${movieId}?language=en-US&append_to_response=videos,credits,similar`,
+    getMovieCredist: build.query<Credits, { movieId: number; type: string }>({
+      query: ({ movieId, type }) =>
+        `/3/${type}/${movieId}?language=en-US&append_to_response=videos,credits,similar`,
       transformResponse: (response: any) => response.credits as Credits,
     }),
   }),

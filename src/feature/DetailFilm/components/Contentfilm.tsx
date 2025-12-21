@@ -1,13 +1,24 @@
 "use client";
 import { FaAngleDown, FaImdb, FaStar } from "react-icons/fa";
 import { MovieData } from "../../../types/entities/Movie";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+
 // import Actor from "./Actor";
 
 interface ContentfilmProps {
   detailFilm: MovieData;
 }
 export default function Contentfilm({ detailFilm }: ContentfilmProps) {
+  console.log("🚀 ~ Contentfilm ~ detailFilm:", detailFilm);
+
+  const uniqueCategories = useMemo(() => {
+    if (!detailFilm?.category) return [];
+
+    return Array.from(
+      new Map(detailFilm.category.map((cate) => [cate.id, cate])).values()
+    );
+  }, [detailFilm.category]);
+
   const [openInfoOnMobile, setOpenInfoOnMobile] = useState(false);
   const handelOpenInfo = () => {
     setOpenInfoOnMobile((prev) => !prev);
@@ -20,10 +31,6 @@ export default function Contentfilm({ detailFilm }: ContentfilmProps) {
     return totalTime;
   };
 
-  console.log(
-    "🚀 ~ Contentfilm ~ detailFilm Cate:",
-    detailFilm.tmdb.vote_average
-  );
   if (!detailFilm) {
     return <p className="bg-re">Không có dữ liệu phim</p>;
   }
@@ -63,11 +70,11 @@ export default function Contentfilm({ detailFilm }: ContentfilmProps) {
       </div>
 
       <div
-        className={`flex flex-col gap-4 p-5 lg:px-0 rounded-2xl bg-[#00000033] lg:bg-[#0000000] lg:rounde-none ${
+        className={`flex flex-col  p-5 lg:px-0 rounded-2xl bg-[#00000033] lg:bg-transparent lg:rounde-none ${
           openInfoOnMobile ? "block" : "hidden"
         } lg:block`}
       >
-        <div className="flex flex-wrap gap-2  text-white   ">
+        <div className="flex flex-wrap gap-3 py-2  text-white   ">
           <div className="flex gap-2 items-center rounded-lg  p-2 bg-[#05060c] border border-amber-300">
             <FaStar className="text-amber-300" />
 
@@ -84,14 +91,18 @@ export default function Contentfilm({ detailFilm }: ContentfilmProps) {
             {getTime()}
           </div>
         </div>
-        <div className="flex flex-wrap gap-2  text-white  ">
-          {detailFilm.category.map((cate) => (
-            <div key={cate.id} className="rounded-lg p-2 bg-[#282b3a]">
-              {cate.name}
-            </div>
-          ))}
+
+        <div className="flex flex-wrap gap-2 py-2   text-white  ">
+          {uniqueCategories.map((cate) => {
+            console.log("🚀 ~ Contentfilm ~ id:", cate.id);
+            return (
+              <div key={cate.id} className="rounded-lg p-2 bg-[#282b3a]">
+                {cate.name}
+              </div>
+            );
+          })}
         </div>
-        <div className="flex flex-col gap-3 ">
+        <div className="flex flex-col gap-3 py-2  ">
           <div>
             <h1 className="text-white text-[14px] font-bold">Giới Thiệu: </h1>
             <p className="text-gray-300 text-[14px] ">{detailFilm.content}</p>

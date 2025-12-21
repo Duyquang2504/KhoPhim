@@ -4,14 +4,18 @@ import { FaHeart, FaPlay } from "react-icons/fa";
 import { IoIosSend, IoMdAdd } from "react-icons/io";
 import { MdAdd } from "react-icons/md";
 import { RiAddLargeFill } from "react-icons/ri";
-import EpisodesFilm from "./components/EpisodesFilm";
+import EpisodesFilm from "./components/Episodes/EpisodesFilm";
 import GalleryFilm from "./components/GalleryFilm";
 import ActorsFilm from "./components/ActorsFilm";
-import { MovieData } from "@/src/types/entities/Movie";
+import { EpisodeServer, MovieData } from "@/src/types/entities/Movie";
 interface ContentfilmProps {
   detailFilm: MovieData;
+  epiposidesFilm: EpisodeServer[];
 }
-export default function PlayListFilm({ detailFilm }: ContentfilmProps) {
+export default function PlayListFilm({
+  detailFilm,
+  epiposidesFilm,
+}: ContentfilmProps) {
   const tabs = ["Tập phim", "Gallery", "Diễn viên"];
   const [type, setType] = useState("Tập phim");
 
@@ -69,8 +73,13 @@ export default function PlayListFilm({ detailFilm }: ContentfilmProps) {
           </div>
         ))}
       </div>
-      <div className="py-3 h-full ">
-        {type === "Tập phim" && <EpisodesFilm />}
+      <div className="py-2 h-full ">
+        {type === "Tập phim" && (
+          <EpisodesFilm
+            detailFilm={detailFilm}
+            epiposidesFilm={epiposidesFilm}
+          />
+        )}
         {type === "Gallery" && <GalleryFilm detailFilm={detailFilm} />}
         {type === "Diễn viên" && <ActorsFilm />}
       </div>
