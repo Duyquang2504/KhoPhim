@@ -11,17 +11,19 @@ export default function EpisodesFilm({
   detailFilm,
   epiposidesFilm,
 }: ContentfilmProps) {
-  const type = detailFilm.type;
+  const type = detailFilm.tmdb.type;
   console.log("🚀 ~ EpisodesFilm ~ type:", type);
   const lang = detailFilm.lang;
   console.log("🚀 ~ EpisodesFilm ~ lang:", lang);
 
   return (
     <>
-      {type === "single" && (
+      {type === "movie" && (
         <SingleFilm detailFilm={detailFilm} epiposidesFilm={epiposidesFilm} />
       )}
-      {type === "series" && <SeriesFilm detailFilm={detailFilm} />}
+      {type === "tv" && (
+        <SeriesFilm detailFilm={detailFilm} epiposidesFilm={epiposidesFilm} />
+      )}
     </>
   );
 }

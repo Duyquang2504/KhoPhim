@@ -42,7 +42,7 @@ export interface MovieData {
   origin_name: string;
   content: string;
 
-  type: "series" | "single";
+  type: "series" | "single" | "hoathinh";
   status: "ongoing" | "completed";
 
   poster_url: string;
