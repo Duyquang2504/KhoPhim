@@ -1,6 +1,10 @@
+"use client";
+import { setSeriesFilm } from "@/src/redux/features/PlayMovieSlice";
+import { useAppDispatch, useAppSelector } from "@/src/redux/store";
 import { EpisodeServer, MovieData } from "@/src/types/entities/Movie";
 import Link from "next/link";
 import { useState } from "react";
+
 import { FaPlay } from "react-icons/fa";
 import { PiKeyboard } from "react-icons/pi";
 
@@ -12,7 +16,22 @@ export default function SeriesFilm({
   detailFilm,
   epiposidesFilm,
 }: ContentfilmProps) {
+  const dispatch = useAppDispatch();
   const [type, setType] = useState("#Hà Nội (Vietsub)");
+  const selectedEpisodeSlug = useAppSelector(
+    (state) => state.playMovie.seriesFilm.episodeSlug
+  );
+
+  const handleChangeSerieFilm = (slug: string, link_embed: string) => {
+    const seriesFilm = {
+      movieSlug: detailFilm.slug,
+      episodeSlug: slug,
+      link_embed: link_embed,
+    };
+
+    dispatch(setSeriesFilm(seriesFilm));
+  };
+
   return (
     <div className="flex flex-col gap-8 ">
       <div className="flex  items-center gap-5">
@@ -21,7 +40,6 @@ export default function SeriesFilm({
         </div>
 
         {epiposidesFilm?.map((es, index) => {
-          console.log("server_data: ", es.server_data);
           return (
             <div
               key={index}
@@ -50,9 +68,18 @@ export default function SeriesFilm({
             className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 "
           >
             {name.server_data.map((ep, id) => (
-              <div className=" flex items-center gap-2 p-3 bg-[#343642] text-white text-center justify-center rounded-md text-[13px] hover:text-[#ffd773]">
+              <Link
+                key={id}
+                href={`/PlayMovie/${detailFilm.slug}`}
+                onClick={() => handleChangeSerieFilm(ep.slug, ep.link_embed)}
+                className={`flex items-center gap-2 p-3 text-white text-center justify-center rounded-md text-[13px] hover:text-[#ffd773] cursor-pointer ${
+                  ep.slug === selectedEpisodeSlug
+                    ? "bg-red-500 text-white"
+                    : "bg-[#343642]"
+                }`}
+              >
                 <FaPlay size={10} /> {ep.name}
-              </div>
+              </Link>
             ))}
           </div>
         ))}

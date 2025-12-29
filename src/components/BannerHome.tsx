@@ -2,11 +2,13 @@
 
 import "../app/animation.css";
 import { IoMdPlayCircle } from "react-icons/io";
-import { PiFilmSlateFill } from "react-icons/pi";
+
 import { useEffect, useState, useRef } from "react";
 import { Movie } from "../utils/movie";
-import { getNewMovies } from "../service/moviesApi";
+
 import { useGetNewMoviesQuery } from "../service/kkphim.service";
+
+import { FaCircleInfo } from "react-icons/fa6";
 
 export default function BannerHome() {
   const { data } = useGetNewMoviesQuery();
@@ -76,19 +78,19 @@ export default function BannerHome() {
 
           <div className="flex gap-4 justify-center lg:justify-start">
             <a
-              href={currentMovie.slug}
-              className="flex items-center gap-2  py-1 px-2 lg:py-3 lg:px-5 border border-[#fdb838] lg:bg-[#fdb838] rounded-2xl hover:shadow-[0_0_20px_5px_#fdb838] transition-shadow"
+              href={`/PlayMovie/${currentMovie.slug}`}
+              className="flex items-center gap-2  py-1 px-2 lg:py-3 lg:px-5 border border-[#fdb838] lg:bg-[#fdb83808] rounded-2xl hover:shadow-[0_0_20px_5px_#fdb838] transition-shadow"
             >
               <IoMdPlayCircle className="w-5 h-5  lg:w-8 lg:h-8" />
-              <p className="font-bold text-[12px] lg:text-sm">Xem Phim</p>
+              <p className="font-bold text-[12px] lg:text-sm">Xem phim</p>
             </a>
 
             <a
-              href={currentMovie.slug}
-              className="flex items-center gap-2 py-1 px-2 lg:py-3 lg:px-5 border border-[#fdb838] lg:bg-[#fdb838] rounded-2xl hover:shadow-[0_0_20px_5px_#fdb838] transition-shadow"
+              href={`/DetailMovie/${currentMovie.slug}`}
+              className="flex items-center gap-2 py-1 px-2 lg:py-3 lg:px-5 border border-[#fdb838] lg:bg-[#fdb83808] rounded-2xl hover:shadow-[0_0_20px_5px_#fdb838] transition-shadow"
             >
-              <PiFilmSlateFill className="w-5 h-5  lg:w-8 lg:h-8" />
-              <p className="font-bold text-[12px] lg:text-sm">Xem Trailer</p>
+              <FaCircleInfo size={25} />
+              <p className="font-bold text-[12px] lg:text-sm">Thông tin</p>
             </a>
           </div>
         </div>

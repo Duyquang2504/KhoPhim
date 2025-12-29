@@ -9,8 +9,6 @@ interface ContentfilmProps {
   detailFilm: MovieData;
 }
 export default function Contentfilm({ detailFilm }: ContentfilmProps) {
-  console.log("🚀 ~ Contentfilm ~ detailFilm:", detailFilm);
-
   const uniqueCategories = useMemo(() => {
     if (!detailFilm?.category) return [];
 
@@ -94,7 +92,6 @@ export default function Contentfilm({ detailFilm }: ContentfilmProps) {
 
         <div className="flex flex-wrap gap-2 py-2   text-white  ">
           {uniqueCategories.map((cate) => {
-            console.log("🚀 ~ Contentfilm ~ id:", cate.id);
             return (
               <div key={cate.id} className="rounded-lg p-2 bg-[#282b3a]">
                 {cate.name}

@@ -1,9 +1,9 @@
 import type { NextConfig } from "next";
-
+/** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: false,
-  
+  productionBrowserSourceMaps: false,
 };
-
+module.exports = nextConfig;
 export default nextConfig;

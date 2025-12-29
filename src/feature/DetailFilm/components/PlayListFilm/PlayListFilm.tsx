@@ -8,6 +8,7 @@ import EpisodesFilm from "./components/Episodes/EpisodesFilm";
 import GalleryFilm from "./components/GalleryFilm";
 import ActorsFilm from "./components/ActorsFilm";
 import { EpisodeServer, MovieData } from "@/src/types/entities/Movie";
+import Link from "next/link";
 interface ContentfilmProps {
   detailFilm: MovieData;
   epiposidesFilm: EpisodeServer[];
@@ -18,7 +19,6 @@ export default function PlayListFilm({
 }: ContentfilmProps) {
   const tabs = ["Tập phim", "Gallery", "Diễn viên"];
   const [type, setType] = useState("Tập phim");
-
   return (
     <div
       className="flex flex-col gap-8 w-full  lg:w-[70%] lg:rounded-tr-3xl px-5 lg:px-8 lg:rounded-tl-[50px] 
@@ -29,10 +29,12 @@ export default function PlayListFilm({
     lg:to-[#191b248e]"
     >
       <div className="flex flex-col lg:flex-row items-center lg:justify-center  pt-5 lg:pt-10 pb-5 gap-10 ">
-        <div className="flex  lg:flex-row  items-center gap-3 bg-linear-to-r from-[#ffd773] to-[#ffecbb] p-3 px-20 lg:p-4 lg:px-8 rounded-3xl text-[16px] font-bold shadow-[0_0_6px_#ffd773ad] cursor-pointer transition-all duration-200 ease-out hover:shadow-[0_0_15px_#ffd773]">
-          <FaPlay size={10} />
-          <p className="">Xem ngay</p>
-        </div>
+        <Link href={`/PlayMovie/${detailFilm.slug}`}>
+          <button className="flex  lg:flex-row  items-center gap-3 bg-linear-to-r from-[#ffd773] to-[#ffecbb] p-3 px-20 lg:p-4 lg:px-8 rounded-3xl text-[16px] font-bold shadow-[0_0_6px_#ffd773ad] cursor-pointer transition-all duration-200 ease-out hover:shadow-[0_0_15px_#ffd773]">
+            <FaPlay size={10} />
+            <p className="">Xem ngay</p>
+          </button>
+        </Link>
 
         <div className="flex items-center gap-5 text-[12px] font-bold">
           <div className=" flex flex-col justify-center items-center text-[#ffff] gap-2 p-3  cursor-pointer  group hover:bg-[#1e1f28] rounded-2xl">
@@ -81,7 +83,7 @@ export default function PlayListFilm({
           />
         )}
         {type === "Gallery" && <GalleryFilm detailFilm={detailFilm} />}
-        {type === "Diễn viên" && <ActorsFilm />}
+        {type === "Diễn viên" && <ActorsFilm variant="playlistfilm" />}
       </div>
     </div>
   );

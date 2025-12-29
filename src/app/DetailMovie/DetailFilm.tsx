@@ -12,7 +12,11 @@ import LoadingPage from "@/src/components/LoadingPage";
 import { useGetDetailMovieQuery } from "@/src/service/kkphim.service";
 import { useGetMovieCredistQuery } from "@/src/service/tmdb.service";
 
-import { setCredits } from "@/src/redux/features/DetailFilmSlice";
+import {
+  setCredits,
+  setDataDetailMovie,
+  setEpisodes,
+} from "@/src/redux/features/DetailFilmSlice";
 import { useAppDispatch } from "@/src/redux/store";
 
 interface CardMoviesProps {
@@ -20,15 +24,16 @@ interface CardMoviesProps {
 }
 
 export default function DetailFilm({ slug }: CardMoviesProps) {
+  const dispatch = useAppDispatch();
   const { data, isLoading } = useGetDetailMovieQuery(slug);
 
   const detailFilm = useMemo(() => {
     return data?.movie ?? null;
   }, [data]);
+
   const epiposidesFilm = useMemo(() => {
     return data?.episodes ?? [];
   }, [data?.episodes]);
-  console.log("🚀 ~ DetailFilm ~ epiposidesFilm:", epiposidesFilm);
 
   const movieId = detailFilm?.tmdb?.id;
   const type = detailFilm?.tmdb?.type;
@@ -36,13 +41,14 @@ export default function DetailFilm({ slug }: CardMoviesProps) {
     { movieId: Number(movieId!), type: type! },
     { skip: !movieId || !type }
   );
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (datatmdb) {
+    if (datatmdb && detailFilm) {
       dispatch(setCredits(datatmdb));
+      dispatch(setDataDetailMovie(detailFilm));
+      dispatch(setEpisodes(epiposidesFilm));
     }
-  }, [datatmdb, dispatch]);
+  }, [datatmdb]);
 
   if (isLoading) {
     return <LoadingPage />;

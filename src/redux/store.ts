@@ -4,11 +4,14 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { castsApi } from "../service/tmdb.service";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import detailFilmReducer from "./features/DetailFilmSlice";
+import playMovieReducer from "./features/PlayMovieSlice";
+
 export const store = configureStore({
   reducer: {
     [moviesApi.reducerPath]: moviesApi.reducer,
     [castsApi.reducerPath]: castsApi.reducer,
     detailFilm: detailFilmReducer,
+    playMovie: playMovieReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(moviesApi.middleware, castsApi.middleware),
